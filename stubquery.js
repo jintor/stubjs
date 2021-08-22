@@ -29,7 +29,7 @@ HTMLElement.prototype.data = function () { return this.getAttribute('data-' + ar
 
 HTMLElement.prototype.css = function () { 
 	if ( typeof arguments[0] == 'object' ) { for ([csskey, cssvalue] of Object.entries(arguments[0])) { this.style[csskey] = cssvalue; } } 
-	else { if ( arguments[1] !== undefined ) { this.style[arguments[0]] = arguments[1]; } else { return this.style[arguments[0]];} }
+	else { if ( arguments[1] !== undefined ) { this.style[arguments[0]] = arguments[1]; } else { return this.currentStyle ? this.currentStyle[name] : window.getComputedStyle ? window.getComputedStyle(this, null).getPropertyValue(arguments[0]) : null; } }
 };
 
 HTMLElement.prototype.remove = function () { this.parentNode.removeChild(this); };
