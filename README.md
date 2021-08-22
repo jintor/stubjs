@@ -1,4 +1,4 @@
-# stubjs
+# stubquery.js
 super reduced / micro / mini jquery pseudo "clone"
 
 I concocted this (please note that it's only a draft that can be used as a starting point)
