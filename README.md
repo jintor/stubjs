@@ -53,3 +53,7 @@ $().length •••••••••••••••••••••••
 
 $()[0].play(); OR .get[0].play =====>>>> $('#audio').play();
 $()[0].pause(); =====>>>> $('#audio').pause();
+
+
+
+/// LAST NOTE : my ajax version is here https://github.com/jintor/stubajax
