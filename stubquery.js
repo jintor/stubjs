@@ -39,17 +39,17 @@ HTMLElement.prototype.showblock = function () { this.style.display = 'block'; };
 HTMLElement.prototype.toggle = function () { 
 	stubtoggle = this.getAttribute('data-stubtoggle');
 	if ( stubtoggle === null ) {
-		displa = this.style.display; 
-		if ( this.classList.contains("inlineBlock") ) { displa = 'inline-block'; }
-		log("null-->>"+displa);
+		if ( arguments[0] !== undefined ) { displa = arguments[0]; } else { displa = this.css('display'); } 
+		log(displa);		
 		switch (displa) {
+			case 'blockunsee' : displa = 'blockunsee'; break;
 			case 'block' : displa = 'blocksee'; break;
 			case 'inline-block' : displa = 'inlinesee'; break;
 			case 'none' : displa = 'inlineunsee'; break;
 			default : displa = 'blocksee'; break;
 		}
 	} else {
-		displa = this.data('stubtoggle'); log("set-->>"+displa);
+		displa = this.data('stubtoggle');
 	}
 	switch ( displa) { 
 		case 'blockunsee' : this.setAttribute('data-stubtoggle','blocksee'); this.showblock(); break;
