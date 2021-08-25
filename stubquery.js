@@ -18,6 +18,16 @@ $ = function () {
 function stubappento () { if ( (arguments[0] !== undefined) && (arguments[1] !== undefined) ) { $(arguments[1]).append($(arguments[0]).outerhtml()); $(arguments[0]).remove(); } }
 function stubprepento () { if ( (arguments[0] !== undefined) && (arguments[1] !== undefined) ) { $(arguments[1]).prepend($(arguments[0]).outerhtml()); $(arguments[0]).remove(); } }
 
+var setInnerHTML = function(elm, html) {
+  elm.innerHTML = html;
+  Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
+    const newScript = document.createElement("script");
+    Array.from(oldScript.attributes).forEach( attr => newScript.setAttribute(attr.name, attr.value) );
+    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+    oldScript.parentNode.replaceChild(newScript, oldScript);
+  });
+}
+
 HTMLElement.prototype.val = function () { if ( arguments[0] !== undefined ) { this.value = arguments[0]; } else { return this.value; } };
 HTMLElement.prototype.html = function () { if ( arguments[0] !== undefined ) { setInnerHTML(this,arguments[0]); } else { return this.innerHTML; } };
 HTMLElement.prototype.append = function () { if ( arguments[0] !== undefined ) { setInnerHTML(this,(this.innerHTML + arguments[0])); } else { setInnerHTML(this,(this.innerHTML + ' ')); } };
